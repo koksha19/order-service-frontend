@@ -3,6 +3,7 @@ mat-toolbar {
   height: 5rem;
   display: flex;
   justify-content: space-between;
+  box-shadow: 3px 3px 3px 3px #656464;
 }
 
 .main-navigation {
