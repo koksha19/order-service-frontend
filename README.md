@@ -1,1 +1,3 @@
-# tech-magic-frontend
+# TechMagicFrontend
+
+This project contains frontend code for TechMagic academy.
