@@ -1,0 +1,113 @@
+.product-detail {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-detail:hover {
+  transform: scale(1.03);
+}
+
+.image {
+  max-width: 400px;
+}
+
+.image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.description {
+  flex: 1;
+  padding: 20px;
+  text-align: left;
+}
+
+.description h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.description h3 {
+  font-size: 20px;
+  color: #4b82f1;
+  margin-bottom: 10px;
+}
+
+.description p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.description p:last-child {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.quantity label {
+  margin-right: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.quantity input {
+  width: 50px;
+  text-align: center;
+  font-size: 16px;
+  margin: 0 5px;
+  padding: 5px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+}
+
+.quantity button {
+  background-color: #cccccc;
+  border: none;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.quantity button:hover {
+  background-color: #b9b9b9;
+}
+
+.quantity button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.order-button {
+  background-color: #4b82f1;
+  color: white;
+  padding: 12px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.order-button:hover {
+  background-color: #3467d6;
+}

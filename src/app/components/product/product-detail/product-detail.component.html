@@ -1,0 +1,19 @@
+<div class="product-detail" *ngIf="product">
+  <div class="image">
+    <img src="{{product.image}}" alt="Guitar">
+  </div>
+  <div class="description">
+    <h2>{{product.name}}</h2>
+    <h3>${{product.price}}</h3>
+    <p>{{product.description}}</p>
+    <p>Left in stock: {{product.stock}}</p>
+    <div class="quantity">
+      <label for="quantity">Quantity:</label>
+      <button (click)="decreaseQuantity()" [disabled]="quantity <= 1">−</button>
+      <input type="number" id="quantity" [(ngModel)]="quantity" min="1" [max]="product.stock">
+      <button (click)="increaseQuantity()" [disabled]="quantity >= product.stock">+</button>
+    </div>
+    <button class="order-button" (click)="placeOrder()">Place order</button>
+  </div>
+</div>
+
