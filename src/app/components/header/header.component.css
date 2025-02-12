@@ -3,16 +3,25 @@ mat-toolbar {
   height: 5rem;
   display: flex;
   justify-content: space-between;
-  box-shadow: 3px 3px 3px 3px #656464;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .main-navigation {
   display: flex;
   align-items: center;
+  gap: 1.5rem;
 }
 
 a {
   text-decoration: none;
   color: white;
   margin: 0 1rem 0 1rem;
+}
+
+a:hover {
+  color: #ffdd57;
+}
+
+.active {
+  color: #ffdd57;
 }
