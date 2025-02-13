@@ -66,3 +66,9 @@ input:focus, textarea:focus {
 .btn:hover {
   background: #3763c0;
 }
+
+@media (max-width: 500px) {
+  .form {
+    width: 80%;
+  }
+}
