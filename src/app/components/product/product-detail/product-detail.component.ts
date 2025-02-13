@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../product.model';
+import {Product} from '../../../models/product.model';
 import {ProductService} from '../../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {NgIf, NgOptimizedImage} from '@angular/common';

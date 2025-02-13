@@ -1,5 +1,5 @@
-import {Component, signal} from '@angular/core';
-import {Product} from '../product.model';
+import {Component} from '@angular/core';
+import {Product} from '../../../models/product.model';
 import {AsyncPipe, NgForOf} from '@angular/common';
 import {ProductComponent} from '../product/product.component';
 import {Router} from '@angular/router';
