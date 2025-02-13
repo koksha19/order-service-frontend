@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../models/product.model';
 import {ProductService} from '../../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import {NgIf, NgOptimizedImage} from '@angular/common';
-import {ProductListComponent} from '../product-list/product-list.component';
+import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
 @Component({
@@ -11,7 +10,8 @@ import {FormsModule} from '@angular/forms';
   imports: [
     NgIf,
     NgOptimizedImage,
-    FormsModule
+    FormsModule,
+    NgForOf
   ],
   templateUrl: './product-detail.component.html',
   standalone: true,
@@ -24,15 +24,11 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
   )  {}
 
   ngOnInit(): void {
     const id: string | null = this.activatedRoute.snapshot.paramMap.get('id');
     this.product = this.productService.findById(id as string);
-    if (!this.product) {
-      this.router.navigate(['/not-found']); // Redirect if product doesn't exist
-    }
   }
 
   increaseQuantity() {

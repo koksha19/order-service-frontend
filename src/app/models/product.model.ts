@@ -1,3 +1,5 @@
+import {Delivery} from './delivery.model';
+
 export interface Product {
   id: string;
   name: string;
@@ -5,5 +7,6 @@ export interface Product {
   description: string;
   image: string;
   stock: number;
+  deliveries: Delivery[];
 }
 

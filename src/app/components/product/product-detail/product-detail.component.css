@@ -96,6 +96,14 @@
   cursor: not-allowed;
 }
 
+.delivery-options {
+  margin-top: 15px;
+}
+
+.delivery-options label:first-child {
+  font-weight: bold;
+}
+
 .order-button {
   background-color: #4b82f1;
   color: white;

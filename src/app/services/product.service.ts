@@ -14,6 +14,11 @@ export class ProductService {
       description: "First description",
       image: 'https://sc1.musik-produktiv.com/pic-010153533xl/suhr-custom-modern-3ts.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+        {name: 'Overnight', price: 100, checked: false},
+      ]
     },
     {
       id: 'asdfasdfa',
@@ -22,86 +27,94 @@ export class ProductService {
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
     {
-      id: 'asdffsaf',
+      id: 'asdfasdfa',
       name: 'Second',
       price: 1200,
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
     {
-      id: 'gfgfgfdf',
+      id: 'asdfasdfa',
       name: 'Second',
       price: 1200,
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
     {
-      id: 'gfgfgfdf',
+      id: 'asdfasdfa',
       name: 'Second',
       price: 1200,
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
     {
-      id: 'gfgfgfdf',
+      id: 'asdfasdfa',
       name: 'Second',
       price: 1200,
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
     {
-      id: 'gfgfgfdf',
+      id: 'asdfasdfa',
       name: 'Second',
       price: 1200,
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
     {
-      id: 'gfgfgfdf',
+      id: 'asdfasdfa',
       name: 'Second',
       price: 1200,
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
     {
-      id: 'gfgfgfdf',
+      id: 'asdfasdfa',
       name: 'Second',
       price: 1200,
       description: "Second description",
       image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
       stock: 5,
-    },
-    {
-      id: 'gfgfgfdf',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-    },
-    {
-      id: 'gfgfgfdf',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-    },
-    {
-      id: 'gfgfgfdf',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
+      deliveries: [
+        {name: 'Standard', price: 50, checked: false},
+        {name: 'Express', price: 70, checked: false},
+      ]
     },
   ]);
   public readonly products$ = this._products$.asObservable();

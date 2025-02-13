@@ -13,6 +13,15 @@
       <input type="number" id="quantity" [(ngModel)]="quantity" min="1" [max]="product.stock">
       <button (click)="increaseQuantity()" [disabled]="quantity >= product.stock">+</button>
     </div>
+    <div class="delivery-options">
+      <label>Choose delivery method:</label>
+      <div *ngFor="let delivery of product.deliveries">
+        <input type="radio" [id]="delivery.name" name="delivery">
+        <label [for]="delivery.name">
+          {{ delivery.name }} - ${{ delivery.price }}
+        </label>
+      </div>
+    </div>
     <button class="order-button" (click)="placeOrder()">Place order</button>
   </div>
 </div>
