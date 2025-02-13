@@ -3,12 +3,28 @@
     <a routerLink="/products">
       <img id="logo" ngSrc="logo.png" alt="Logo" height="52" width="53">
     </a>
-    <a routerLink="/products" routerLinkActive="active">Products</a>
-    <a routerLink="/orders" routerLinkActive="active">Orders</a>
+    <nav class="nav-links">
+      <a routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/orders" routerLinkActive="active">Orders</a>
+      <a routerLink="/admin/add-product" routerLinkActive="active">Add product</a>
+      <a routerLink="/admin/products" routerLinkActive="active">Admin products</a>
+    </nav>
   </div>
   <div>
-    <a routerLink="/login" routerLinkActive="active">Login</a>
-    <a routerLink="/signup" routerLinkActive="active">Sign up</a>
+    <nav class="nav-links">
+      <a routerLink="/login" routerLinkActive="active">Login</a>
+      <a routerLink="/signup" routerLinkActive="active">Sign up</a>
+    </nav>
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <a mat-menu-item routerLink="/products">Products</a>
+      <a mat-menu-item routerLink="/orders">Orders</a>
+      <a mat-menu-item routerLink="/admin/add-product">Add product</a>
+      <a mat-menu-item routerLink="/admin/products">Admin products</a>
+      <a mat-menu-item routerLink="/login" routerLinkActive="active">Login</a>
+      <a mat-menu-item routerLink="/signup" routerLinkActive="active">Sign up</a>
+    </mat-menu>
   </div>
 </mat-toolbar>
-

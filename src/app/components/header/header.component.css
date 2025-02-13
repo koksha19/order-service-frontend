@@ -1,9 +1,9 @@
 mat-toolbar {
+  width: 100%;
   background-color: #4b82f1;
   height: 5rem;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .main-navigation {
@@ -24,4 +24,23 @@ a:hover {
 
 .active {
   color: #ffdd57;
+}
+
+.menu-button {
+  display: none;
+  color: white;
+  background: #4b82f1;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 1080px) {
+  .nav-links, auth-links {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
 }
