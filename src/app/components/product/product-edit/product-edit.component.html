@@ -6,8 +6,26 @@
       <input type="text" id="title" name="title">
     </div>
     <div>
-      <label for="stock">Items in stock</label>
-      <input type="number" id="stock" name="stock">
+      <label>Delivery Options</label>
+        <span>
+          <mat-checkbox
+            [checked]="delivery().checked"
+            [indeterminate]="partiallyComplete()"
+            (change)="update($event.checked)">
+            {{delivery().name}}
+          </mat-checkbox>
+        </span>
+        <span class="example-list-section">
+          <ul>
+            @for (option of delivery().options; track option; let i = $index) {
+              <li>
+                <mat-checkbox [checked]="option.checked" (change)="update($event.checked, i)">
+                  {{option.name}}
+                </mat-checkbox>
+              </li>
+            }
+          </ul>
+        </span>
     </div>
     <div>
       <label for="description">Description</label>
