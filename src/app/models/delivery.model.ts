@@ -1,6 +1,6 @@
 export interface Delivery {
   name: string;
   checked: boolean;
-  price?: number;
+  price: number;
   options?: Delivery[];
 }

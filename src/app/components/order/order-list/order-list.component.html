@@ -1,5 +1,7 @@
+<h2>Orders</h2>
 <ul class="order-list">
-  <li >
-
+  <li *ngFor="let order of orders$ | async">
+    <app-order [order]="order" ></app-order>
   </li>
 </ul>
+

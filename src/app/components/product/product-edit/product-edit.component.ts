@@ -18,6 +18,7 @@ import {MatCheckbox} from '@angular/material/checkbox';
 export class ProductEditComponent {
   readonly delivery = signal<Delivery>({
     name: 'Select all',
+    price: 0,
     checked: false,
     options: [
       {name: 'Standard', price: 50, checked: false},

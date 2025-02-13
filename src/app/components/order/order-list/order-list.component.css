@@ -1,1 +1,11 @@
+h2 {
+  justify-self: center;
+}
 
+ul {
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
