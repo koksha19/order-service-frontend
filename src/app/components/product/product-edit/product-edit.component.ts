@@ -1,16 +1,11 @@
 import { Component, computed, signal } from '@angular/core';
 import {FormsModule} from '@angular/forms';
-import {NgForOf} from '@angular/common';
 import { Delivery } from '../../../models/delivery.model';
 import {MatCheckbox} from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-product-edit',
-  imports: [
-    FormsModule,
-    NgForOf,
-    MatCheckbox
-  ],
+  imports: [FormsModule, MatCheckbox],
   templateUrl: './product-edit.component.html',
   standalone: true,
   styleUrl: '../../auth/signup/signup.component.css',

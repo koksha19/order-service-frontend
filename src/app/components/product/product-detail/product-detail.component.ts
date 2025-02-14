@@ -1,15 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../../models/product.model';
 import {ProductService} from '../../../services/product.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import {NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import {NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-product-detail',
   imports: [
     NgIf,
-    NgOptimizedImage,
     FormsModule,
     NgForOf
   ],
