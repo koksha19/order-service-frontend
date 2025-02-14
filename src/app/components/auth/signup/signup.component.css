@@ -33,6 +33,10 @@ label {
   text-align: left;
 }
 
+p{
+  font-weight: bold;
+}
+
 small {
   color: #666;
 }

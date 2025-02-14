@@ -18,7 +18,7 @@ import {FormsModule} from '@angular/forms';
 })
 export class ProductDetailComponent implements OnInit {
   public product?: Product | null;
-  public quantity: number = 1;
+  public quantity = 1;
 
   constructor(
     private productService: ProductService,

@@ -52,7 +52,7 @@
 
 .description p:last-of-type {
   font-weight: bold;
-  color: #28a745;
+  color: #333;
 }
 
 .quantity {

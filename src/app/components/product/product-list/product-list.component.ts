@@ -3,7 +3,7 @@ import {Product} from '../../../models/product.model';
 import {AsyncPipe, NgForOf} from '@angular/common';
 import {ProductComponent} from '../product/product.component';
 import {Router} from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import {ProductService} from '../../../services/product.service';
 
 @Component({

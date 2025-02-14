@@ -14,7 +14,7 @@
       <button (click)="increaseQuantity()" [disabled]="quantity >= product.stock">+</button>
     </div>
     <div class="delivery-options">
-      <label>Choose delivery method:</label>
+      <p>Choose delivery method:</p>
       <div *ngFor="let delivery of product.deliveries">
         <input type="radio" [id]="delivery.name" name="delivery">
         <label [for]="delivery.name">
