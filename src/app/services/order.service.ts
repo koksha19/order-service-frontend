@@ -17,15 +17,15 @@ export class OrderService {
         contactName: 'Lev',
       },
       product: {
-        id: 'sdfasdf',
-        name: 'First',
+        _id: 'sdfasdf',
+        title: 'First',
         price: 1000,
         description:
           'First product lfjal alfjaf skjfsa fl;ksdajf safkljaf ;aslkfjsad',
         image:
           'https://sc1.musik-produktiv.com/pic-010153533xl/suhr-custom-modern-3ts.jpg',
         stock: 4,
-        deliveries: [
+        delivery: [
           { name: 'Standard', price: 50, checked: false },
           { name: 'Express', price: 70, checked: false },
           { name: 'Overnight', price: 100, checked: false },
@@ -43,15 +43,15 @@ export class OrderService {
         contactName: 'Lev',
       },
       product: {
-        id: 'sdfasdf',
-        name: 'First',
+        _id: 'sdfasdf',
+        title: 'First',
         price: 1000,
         description:
           'First product lfjal alfjaf skjfsa fl;ksdajf safkljaf ;aslkfjsad',
         image:
           'https://sc1.musik-produktiv.com/pic-010153533xl/suhr-custom-modern-3ts.jpg',
         stock: 4,
-        deliveries: [
+        delivery: [
           { name: 'Standard', price: 50, checked: false },
           { name: 'Express', price: 70, checked: false },
           { name: 'Overnight', price: 100, checked: false },
@@ -69,15 +69,15 @@ export class OrderService {
         contactName: 'Lev',
       },
       product: {
-        id: 'sdfasdf',
-        name: 'First',
+        _id: 'sdfasdf',
+        title: 'First',
         price: 1000,
         description:
           'First product lfjal alfjaf skjfsa fl;ksdajf safkljaf ;aslkfjsad',
         image:
           'https://sc1.musik-produktiv.com/pic-010153533xl/suhr-custom-modern-3ts.jpg',
         stock: 4,
-        deliveries: [
+        delivery: [
           { name: 'Standard', price: 50, checked: false },
           { name: 'Express', price: 70, checked: false },
           { name: 'Overnight', price: 100, checked: false },

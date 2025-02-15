@@ -3,11 +3,13 @@ import { BehaviorSubject } from 'rxjs';
 import { Product } from '../models/product.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductService {
-  private readonly _products$: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([
-    {
+  private readonly _products$: BehaviorSubject<Product[]> = new BehaviorSubject<
+    Product[]
+  >([
+    /*{
       id: 'asdfsadf',
       name: 'First',
       price: 100,
@@ -19,103 +21,7 @@ export class ProductService {
         {name: 'Express', price: 70, checked: false},
         {name: 'Overnight', price: 100, checked: false},
       ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
-    {
-      id: 'asdfasdfa',
-      name: 'Second',
-      price: 1200,
-      description: "Second description",
-      image: 'https://images.squarespace-cdn.com/content/v1/602065399c6bdd6741ed57e1/1711214292662-I612PUZ3L17MXIE4B23A/StandardGalleryCaramel.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-      ]
-    },
+    },*/
   ]);
   public readonly products$ = this._products$.asObservable();
 
@@ -123,19 +29,15 @@ export class ProductService {
     return this._products$.getValue();
   }
 
-  private set products(tasks: Product[]){
-    this._products$.next(tasks);
+  private set products(products: Product[]) {
+    this._products$.next(products);
   }
 
-  public setProducts(tasks: Product[]): void{
-    this.products = tasks;
-  }
-
-  public addTask(task: Product): void {
-    this.products = [...this.products, task];
+  public setProducts(products: Product[]): void {
+    this.products = products;
   }
 
   public findById(id: string): Product | null {
-    return this.products.find((product) => product.id === id) || null;
+    return this.products.find((product) => product._id === id) || null;
   }
 }

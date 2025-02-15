@@ -1,12 +1,11 @@
-import {Delivery} from './delivery.model';
+import { Delivery } from './delivery.model';
 
 export interface Product {
-  id: string;
-  name: string;
+  _id: string;
+  title: string;
   price: number;
+  delivery: Delivery[];
   description: string;
   image: string;
   stock: number;
-  deliveries: Delivery[];
 }
-

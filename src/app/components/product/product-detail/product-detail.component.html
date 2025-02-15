@@ -3,7 +3,7 @@
     <img src="{{product.image}}" alt="Guitar">
   </div>
   <div class="description">
-    <h2>{{product.name}}</h2>
+    <h2>{{product.title}}</h2>
     <h3>${{product.price}}</h3>
     <p>{{product.description}}</p>
     <p>Left in stock: {{product.stock}}</p>
@@ -15,10 +15,10 @@
     </div>
     <div class="delivery-options">
       <p>Choose delivery method:</p>
-      <div *ngFor="let delivery of product.deliveries">
-        <input type="radio" [id]="delivery.name" name="delivery">
-        <label [for]="delivery.name">
-          {{ delivery.name }} - ${{ delivery.price }}
+      <div *ngFor="let delivery of product.delivery">
+        <input type="radio" [id]="delivery" name="delivery">
+        <label [for]="delivery">
+          {{ delivery }}
         </label>
       </div>
     </div>
