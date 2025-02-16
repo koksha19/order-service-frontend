@@ -16,6 +16,7 @@ export class OrderService {
         phone: '066-689-79-73',
         contactName: 'Lev',
       },
+      _id: 'lskjsljasljsalf',
       product: {
         _id: 'sdfasdf',
         title: 'First',
@@ -42,6 +43,7 @@ export class OrderService {
         phone: '066-689-79-73',
         contactName: 'Lev',
       },
+      _id: 'asdlja4ijwvd',
       product: {
         _id: 'sdfasdf',
         title: 'First',
@@ -68,6 +70,7 @@ export class OrderService {
         phone: '066-689-79-73',
         contactName: 'Lev',
       },
+      _id: 'akdjsw4hvfjhssd5',
       product: {
         _id: 'sdfasdf',
         title: 'First',

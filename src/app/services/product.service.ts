@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Product } from '../models/product.model';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,8 @@ export class ProductService {
   ]);
   public readonly products$ = this._products$.asObservable();
 
+  constructor(private apiService: ApiService) {}
+
   get products(): Product[] {
     return this._products$.getValue();
   }
@@ -39,5 +42,11 @@ export class ProductService {
 
   public findById(id: string): Product | null {
     return this.products.find((product) => product._id === id) || null;
+  }
+
+  public createProduct(product: Product): void {
+    this.apiService.createProduct(product).subscribe((response) => {
+      this.products = [...this.products, response.product];
+    });
   }
 }

@@ -18,7 +18,7 @@
       <div *ngFor="let delivery of product.delivery">
         <input type="radio" [id]="delivery" name="delivery">
         <label [for]="delivery">
-          {{ delivery }}
+          {{ delivery.name }} - ${{delivery.price}}
         </label>
       </div>
     </div>

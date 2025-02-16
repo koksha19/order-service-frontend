@@ -1,13 +1,17 @@
 <div class="form">
   <h2>Add new product</h2>
-  <form class="form-item">
+  <form class="form-item" [formGroup]="productForm" (submit)="onCreateProduct()">
     <div>
       <label for="title">Title</label>
-      <input type="text" id="title" name="title">
+      <input type="text" id="title" formControlName="title">
+    </div>
+    <div>
+      <label for="title">Price</label>
+      <input type="number" id="price" formControlName="price">
     </div>
     <div>
       <p>Delivery Options</p>
-        <span>
+      <span>
           <mat-checkbox
             [checked]="delivery().checked"
             [indeterminate]="partiallyComplete()"
@@ -15,12 +19,12 @@
             {{delivery().name}}
           </mat-checkbox>
         </span>
-        <span class="example-list-section">
+      <span class="example-list-section">
           <ul>
             @for (option of delivery().options; track option; let i = $index) {
               <li>
                 <mat-checkbox [checked]="option.checked" (change)="update($event.checked, i)">
-                  {{option.name}}
+                  {{option.name}} - ${{option.price}}
                 </mat-checkbox>
               </li>
             }
@@ -29,14 +33,17 @@
     </div>
     <div>
       <label for="description">Description</label>
-      <textarea name="description" id="description" cols="30" rows="10"></textarea>
+      <textarea formControlName="description" id="description" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      <label for="stock">Items in stock</label>
+      <input type="number" id="stock" formControlName="stock">
     </div>
     <div>
       <label for="image">Image</label>
-      <input type="file" id="image" name="image">
+      <input type="file" id="image" formControlName="image">
     </div>
-    <button class="btn">Add book</button>
+    <button class="btn" type="submit">Add book</button>
   </form>
 </div>
-
 

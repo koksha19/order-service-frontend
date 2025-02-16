@@ -7,11 +7,20 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ApiService {
+  private apiUrl = 'http://localhost:8080/products';
+
   constructor(private http: HttpClient) {}
 
   public getProducts(): Observable<{ message: string; products: Product[] }> {
-    return this.http.get<{ message: string; products: Product[] }>(
-      'http://localhost:8080/products'
+    return this.http.get<{ message: string; products: Product[] }>(this.apiUrl);
+  }
+
+  public createProduct(
+    product: Product
+  ): Observable<{ message: string; product: Product }> {
+    return this.http.post<{ message: string; product: Product }>(
+      this.apiUrl,
+      product
     );
   }
 }
