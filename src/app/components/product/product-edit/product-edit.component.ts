@@ -4,26 +4,49 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Delivery } from '../../../models/delivery.model';
-import { MatCheckbox } from '@angular/material/checkbox';
 import { ProductService } from '../../../services/product.service';
 import { NgIf } from '@angular/common';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatButton } from '@angular/material/button';
+import { MatError } from '@angular/material/form-field';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-product-edit',
-  imports: [FormsModule, MatCheckbox, ReactiveFormsModule, NgIf],
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    NgIf,
+    MatFormField,
+    MatInput,
+    MatButton,
+    MatLabel,
+    MatError,
+    MatCheckbox,
+  ],
   templateUrl: './product-edit.component.html',
   standalone: true,
   styleUrl: '../../auth/signup/signup.component.css',
 })
 export class ProductEditComponent {
   public productForm = new FormGroup({
-    title: new FormControl(''),
-    price: new FormControl(),
-    description: new FormControl(''),
-    stock: new FormControl(),
-    image: new FormControl(),
+    title: new FormControl('', {
+      validators: [Validators.required, Validators.maxLength(50)],
+    }),
+    price: new FormControl(null, {
+      validators: [Validators.required, Validators.min(1)],
+    }),
+    description: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(50)],
+    }),
+    stock: new FormControl(null, {
+      validators: [Validators.required, Validators.min(1)],
+    }),
+    image: new FormControl(null),
   });
 
   public imagePreview = '';
@@ -78,9 +101,9 @@ export class ProductEditComponent {
 
     const formData = new FormData();
     formData.append('title', this.productForm.value.title || '');
-    formData.append('price', this.productForm.value.price?.toString() || '');
+    formData.append('price', this.productForm.value.price || '');
     formData.append('description', this.productForm.value.description || '');
-    formData.append('stock', this.productForm.value.stock?.toString() || '');
+    formData.append('stock', this.productForm.value.stock || '');
     formData.append('image', this.selectedFile);
     formData.append('delivery', JSON.stringify(selectedDeliveries));
     console.log(formData);
