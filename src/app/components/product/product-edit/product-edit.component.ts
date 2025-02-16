@@ -14,6 +14,7 @@ import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatError } from '@angular/material/form-field';
 import { MatCheckbox } from '@angular/material/checkbox';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-edit',
@@ -63,7 +64,10 @@ export class ProductEditComponent {
     ],
   });
 
-  constructor(private productsService: ProductService) {}
+  constructor(
+    private productsService: ProductService,
+    private router: Router
+  ) {}
 
   readonly partiallyComplete = computed(() => {
     const delivery = this.delivery();
@@ -114,6 +118,7 @@ export class ProductEditComponent {
         this.productForm.reset();
         this.imagePreview = '';
         this.selectedFile = null;
+        this.router.navigate(['/products']);
       },
       error: (err) => {
         console.error('Error creating product:', err);
