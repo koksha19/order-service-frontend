@@ -16,11 +16,11 @@ export class ApiService {
   }
 
   public createProduct(
-    product: Product
+    formData: FormData
   ): Observable<{ message: string; product: Product }> {
     return this.http.post<{ message: string; product: Product }>(
       this.apiUrl,
-      product
+      formData
     );
   }
 }

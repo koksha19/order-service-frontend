@@ -72,6 +72,11 @@ input:focus, textarea:focus {
   background: #3763c0;
 }
 
+
+.image-preview img {
+  width: 100%;
+}
+
 @media (max-width: 500px) {
   .form {
     width: 80%;

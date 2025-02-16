@@ -9,7 +9,7 @@ export class OrderService {
   private readonly _orders$: BehaviorSubject<Order[]> = new BehaviorSubject<
     Order[]
   >([
-    {
+    /*{
       customer: {
         name: 'Lev & Co',
         address: 'Khreshchatyk street 25, Kyiv, 12345',
@@ -89,7 +89,7 @@ export class OrderService {
       quantity: 2,
       delivery: { name: 'Express', price: 70, checked: false },
       date: new Date(),
-    },
+    },*/
   ]);
   public readonly orders$ = this._orders$.asObservable();
 }

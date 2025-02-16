@@ -7,12 +7,12 @@ import {
 } from '@angular/forms';
 import { Delivery } from '../../../models/delivery.model';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-product-edit',
-  imports: [FormsModule, MatCheckbox, ReactiveFormsModule],
+  imports: [FormsModule, MatCheckbox, ReactiveFormsModule, NgIf],
   templateUrl: './product-edit.component.html',
   standalone: true,
   styleUrl: '../../auth/signup/signup.component.css',
@@ -23,8 +23,11 @@ export class ProductEditComponent {
     price: new FormControl(),
     description: new FormControl(''),
     stock: new FormControl(),
-    image: new FormControl(''),
+    image: new FormControl(),
   });
+
+  public imagePreview = '';
+  private selectedFile: File | null = null;
 
   readonly delivery = signal<Delivery>({
     name: 'Select all',
@@ -64,19 +67,53 @@ export class ProductEditComponent {
   }
 
   public onCreateProduct() {
+    if (!this.productForm.valid || !this.selectedFile) {
+      return;
+    }
+
+    console.log(this.selectedFile);
+
     const selectedDeliveries =
       this.delivery().options?.filter((d) => d.checked) || [];
-    const newProduct: Product = {
-      title: this.productForm.value.title as string,
-      price: this.productForm.value.price,
-      description: this.productForm.value.description as string,
-      image: this.productForm.value.image as string,
-      stock: this.productForm.value.stock,
-      delivery: selectedDeliveries,
+
+    const formData = new FormData();
+    formData.append('title', this.productForm.value.title || '');
+    formData.append('price', this.productForm.value.price?.toString() || '');
+    formData.append('description', this.productForm.value.description || '');
+    formData.append('stock', this.productForm.value.stock?.toString() || '');
+    formData.append('image', this.selectedFile);
+    formData.append('delivery', JSON.stringify(selectedDeliveries));
+    console.log(formData);
+
+    this.productsService.createProduct(formData).subscribe({
+      next: (response) => {
+        console.log('Product added:', response.product);
+        this.productForm.reset();
+        this.imagePreview = '';
+        this.selectedFile = null;
+      },
+      error: (err) => {
+        console.error('Error creating product:', err);
+      },
+    });
+  }
+
+  public onImagePicked(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || input.files.length === 0) {
+      return;
+    }
+    this.selectedFile = input.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (typeof reader.result === 'string') {
+        this.imagePreview = reader.result;
+      }
     };
+    reader.readAsDataURL(this.selectedFile);
 
-    console.log(newProduct);
-
-    this.productsService.createProduct(newProduct);
+    console.log(this.selectedFile);
+    console.log(this.productForm);
   }
 }

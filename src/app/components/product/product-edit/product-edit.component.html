@@ -41,7 +41,10 @@
     </div>
     <div>
       <label for="image">Image</label>
-      <input type="file" id="image" formControlName="image">
+      <input type="file" id="image" formControlName="image" (change)="onImagePicked($event)">
+    </div>
+    <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview">
+      <img [src]="imagePreview" alt="Image preview">
     </div>
     <button class="btn" type="submit">Add book</button>
   </form>

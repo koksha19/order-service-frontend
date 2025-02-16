@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Product } from '../models/product.model';
 import { ApiService } from './api.service';
 
@@ -9,21 +9,7 @@ import { ApiService } from './api.service';
 export class ProductService {
   private readonly _products$: BehaviorSubject<Product[]> = new BehaviorSubject<
     Product[]
-  >([
-    /*{
-      id: 'asdfsadf',
-      name: 'First',
-      price: 100,
-      description: "First description",
-      image: 'https://sc1.musik-produktiv.com/pic-010153533xl/suhr-custom-modern-3ts.jpg',
-      stock: 5,
-      deliveries: [
-        {name: 'Standard', price: 50, checked: false},
-        {name: 'Express', price: 70, checked: false},
-        {name: 'Overnight', price: 100, checked: false},
-      ]
-    },*/
-  ]);
+  >([]);
   public readonly products$ = this._products$.asObservable();
 
   constructor(private apiService: ApiService) {}
@@ -44,9 +30,11 @@ export class ProductService {
     return this.products.find((product) => product._id === id) || null;
   }
 
-  public createProduct(product: Product): void {
-    this.apiService.createProduct(product).subscribe((response) => {
-      this.products = [...this.products, response.product];
-    });
+  public createProduct(formData: FormData): Observable<{ product: Product }> {
+    return this.apiService.createProduct(formData).pipe(
+      tap((response) => {
+        this.products = [...this.products, response.product];
+      })
+    );
   }
 }
