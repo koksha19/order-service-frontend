@@ -1,6 +1,10 @@
-<div class="product-card">
+<div class="product-card" [ngClass]="{ 'with-buttons': isAdminRoute }">
   <img src="{{product().image}}" alt="Guitar">
   <h2>{{product().title}}</h2>
   <p>${{product().price}}</p>
   <p>Stock: {{product().stock}}</p>
+  <div *ngIf="isAdminRoute">
+    <button class="edit-btn" mat-raised-button>Edit</button>
+    <button class="delete-btn" mat-raised-button>Delete</button>
+  </div>
 </div>

@@ -33,3 +33,13 @@
   font-weight: bold;
   color: #28a745;
 }
+
+.product-card.with-buttons img {
+  height: 60%;
+}
+
+button {
+  margin: 0 5px 0 5px;
+}
+
+
