@@ -3,7 +3,7 @@ import { Product } from '../../../models/product.model';
 import { NgClass, NgIf } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatAnchor, MatButton } from '@angular/material/button';
-import { ApiService } from '../../../services/api.service';
+import { ProductApiService } from '../../../services/product-api.service';
 import { ProductService } from '../../../services/product.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class ProductComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService,
+    private apiService: ProductApiService,
     private productsService: ProductService
   ) {
     this.route.url.subscribe((segments) => {

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { Product } from '../models/product.model';
-import { ApiService } from './api.service';
+import { ProductApiService } from './product-api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ export class ProductService {
   >([]);
   public readonly products$ = this._products$.asObservable();
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ProductApiService) {}
 
   get products(): Product[] {
     return this._products$.getValue();

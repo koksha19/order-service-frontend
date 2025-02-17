@@ -15,7 +15,7 @@
       <mat-label>Email</mat-label>
       <input matInput type="email" formControlName="email">
       <mat-error *ngIf="customerForm.get('email')?.hasError('required')">
-        Price is required
+        Email is required
       </mat-error>
       <mat-error *ngIf="customerForm.get('email')?.hasError('email')">
         Email is invalid

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { MatButton } from '@angular/material/button';
-import { MatCheckbox } from '@angular/material/checkbox';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { NgIf } from '@angular/common';
@@ -10,12 +9,13 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { AuthApiService } from '../../../services/auth-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
   imports: [
     MatButton,
-    MatCheckbox,
     MatError,
     MatFormField,
     MatInput,
@@ -42,7 +42,32 @@ export class SignupComponent {
     confPassword: new FormControl('', { validators: [Validators.required] }),
   });
 
+  constructor(
+    private authService: AuthApiService,
+    private router: Router
+  ) {}
+
   public onSaveCustomer() {
-    console.log('');
+    if (!this.customerForm.valid) {
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append('customer', this.customerForm.value.customer || '');
+    formData.append('email', this.customerForm.value.email || '');
+    formData.append('contactName', this.customerForm.value.contactName || '');
+    formData.append('address', this.customerForm.value.address || '');
+    formData.append('phone', this.customerForm.value.phone || '');
+    formData.append('password', this.customerForm.value.password || '');
+    formData.append('confPassword', this.customerForm.value.confPassword || '');
+
+    this.authService.createCustomer(formData).subscribe({
+      next: async () => {
+        await this.router.navigate(['/products']);
+      },
+      error: (err) => {
+        console.error('Error creating product:', err);
+      },
+    });
   }
 }

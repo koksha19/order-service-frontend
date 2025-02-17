@@ -5,7 +5,7 @@ import { ProductComponent } from '../product/product.component';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ProductService } from '../../../services/product.service';
-import { ApiService } from '../../../services/api.service';
+import { ProductApiService } from '../../../services/product-api.service';
 
 @Component({
   selector: 'app-product-list',
@@ -20,7 +20,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productsService: ProductService,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ProductApiService
   ) {
     this.products$ = this.productsService.products$;
   }
