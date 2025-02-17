@@ -8,7 +8,7 @@
         Title is required
       </mat-error>
       <mat-error *ngIf="productForm.get('title')?.hasError('minlength')">
-        Title must be at least 3 characters
+        Title can't be longer than 50 characters
       </mat-error>
     </mat-form-field>
 

@@ -1,40 +1,70 @@
 <div class="form">
-  <h2>Register user</h2>
-  <form class="form-item">
-    <div>
-      <label for="customer">Customer</label>
-      <input type="text" id="customer" name="customer">
-    </div>
-    <div>
-      <label for="email">EMail</label>
-      <input type="email" id="email" name="email">
-    </div>
-    <div>
-      <label for="name">Contact name</label>
-      <input type="text" id="name" name="name">
-    </div>
-    <div>
-      <label for="address">
-        Enter your address:<br />
-        <small>Format: Khreshchatyk steet 25, Kyiv, 12345</small>
-      </label>
-      <input type="text" id="address" name="address" pattern="^\s[A-Za-z\s]+\d,\s?[A-Za-z\s]+,\s?\d{5}(-\d{4})?$">
-    </div>
-    <div>
-      <label for="phone">
-        Enter your phone number:<br />
-        <small>Format: 123-456-7890</small>
-      </label>
-      <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required />
-    </div>
-    <div>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password">
-    </div>
-    <div>
-      <label for="conf_password">Confirm password</label>
-      <input type="password" id="conf_password" name="conf_password">
-    </div>
-    <button class="btn">Create account</button>
+  <h2>Register customer</h2>
+  <form class="form-item" [formGroup]="customerForm" (ngSubmit)="onSaveCustomer()">
+    <mat-form-field appearance="outline">
+      <mat-label>Customer</mat-label>
+      <input matInput type="text" formControlName="customer">
+      <mat-error *ngIf="customerForm.get('customer')?.hasError('required')">
+        Customer is required
+      </mat-error>
+      <mat-error *ngIf="customerForm.get('title')?.hasError('maxlength')">
+        Customer must be at least 3 characters
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email">
+      <mat-error *ngIf="customerForm.get('email')?.hasError('required')">
+        Price is required
+      </mat-error>
+      <mat-error *ngIf="customerForm.get('email')?.hasError('email')">
+        Email is invalid
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Contact name</mat-label>
+      <input matInput type="text" formControlName="contactName">
+      <mat-error *ngIf="customerForm.get('contactName')?.hasError('required')">
+        Contact name is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        Address -
+        <small>Khreshchatyk steet 25, Kyiv, 12345</small>
+      </mat-label>
+      <input matInput type="text" formControlName="address">
+      <mat-error *ngIf="customerForm.get('address')?.hasError('required')">
+        Address is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>
+        Phone -
+        <small>123-456-7890</small>
+      </mat-label>
+      <input matInput type="tel" formControlName="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+      <mat-error *ngIf="customerForm.get('phone')?.hasError('required')">
+        Phone is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password">
+      <mat-error *ngIf="customerForm.get('password')?.hasError('required')">
+        Password is required
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Confirm password</mat-label>
+      <input matInput type="password" formControlName="confPassword">
+      <mat-error *ngIf="customerForm.get('confPassword')?.hasError('required')">
+        Password confirmation is required
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="customerForm.invalid">
+      Create customer
+    </button>
   </form>
 </div>
