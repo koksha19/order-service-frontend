@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { NgIf, NgOptimizedImage } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
@@ -30,7 +30,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private authSubscription = new Subscription();
   public isAuthenticated = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.authSubscription = this.authService
@@ -43,6 +46,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogOut() {
     this.isAuthenticated = false;
     this.authService.logOut();
+    this.router.navigate(['/products']);
   }
 
   ngOnDestroy() {
