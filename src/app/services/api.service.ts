@@ -23,4 +23,10 @@ export class ApiService {
       formData
     );
   }
+
+  public deleteProduct(
+    productId: string | undefined
+  ): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(this.apiUrl + `/${productId}`);
+  }
 }

@@ -37,4 +37,16 @@ export class ProductService {
       })
     );
   }
+
+  public deleteProduct(
+    productId: string | undefined
+  ): Observable<{ message: string }> {
+    return this.apiService.deleteProduct(productId).pipe(
+      tap(() => {
+        this.products = this.products.filter(
+          (product) => product._id !== productId
+        );
+      })
+    );
+  }
 }
