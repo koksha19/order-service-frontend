@@ -14,7 +14,7 @@
     <nav class="nav-links">
       <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active">Login</a>
       <a *ngIf="!isAuthenticated" routerLink="/signup" routerLinkActive="active">Sign up</a>
-      <a *ngIf="isAuthenticated" routerLink="/logout" routerLinkActive="active">Log out</a>
+      <a *ngIf="isAuthenticated" routerLink="/logout" routerLinkActive="active" (click)="onLogOut()">Log out</a>
     </nav>
     <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
       <mat-icon>menu</mat-icon>
@@ -26,7 +26,7 @@
       <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/admin/products">Admin products</a>
       <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/login" routerLinkActive="active">Login</a>
       <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/signup" routerLinkActive="active">Sign up</a>
-      <a *ngIf="isAuthenticated" mat-menu-item routerLink="/logout" routerLinkActive="active">Log out</a>
+      <a *ngIf="isAuthenticated" mat-menu-item routerLink="/logout" routerLinkActive="active" (click)="onLogOut()">Log out</a>
     </mat-menu>
   </div>
 </mat-toolbar>
