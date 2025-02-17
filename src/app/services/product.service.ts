@@ -40,6 +40,13 @@ export class ProductService {
     );
   }
 
+  public updateProduct(
+    productId: string,
+    productData: FormData
+  ): Observable<{ message: string; product: Product }> {
+    return this.apiService.updateProduct(productId, productData);
+  }
+
   public deleteProduct(
     productId: string | undefined
   ): Observable<{ message: string }> {

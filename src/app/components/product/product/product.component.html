@@ -4,7 +4,7 @@
   <p>${{product().price}}</p>
   <p>Stock: {{product().stock}}</p>
   <div *ngIf="isAdminRoute">
-    <button class="edit-btn" mat-raised-button>Edit</button>
+    <a class="edit-btn" mat-raised-button [routerLink]="['/admin/edit-product', product()._id]" (click)="stopPropagation($event)">Edit</a>
     <button class="delete-btn" mat-raised-button (click)="onDelete(product()._id, $event)">Delete</button>
   </div>
 </div>

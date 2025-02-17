@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import {OrderListComponent} from './components/order/order-list/order-list.component';
-import {HomeComponent} from './components/home/home.component';
-import {ProductListComponent} from './components/product/product-list/product-list.component';
-import {ProductDetailComponent} from './components/product/product-detail/product-detail.component';
-import {SignupComponent} from './components/auth/signup/signup.component';
-import {LoginComponent} from './components/auth/login/login.component';
-import {ProductEditComponent} from './components/product/product-edit/product-edit.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { HomeComponent } from './components/home/home.component';
+import { ProductListComponent } from './components/product/product-list/product-list.component';
+import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,4 +16,5 @@ export const routes: Routes = [
   { path: 'admin/add-product', component: ProductEditComponent },
   { path: 'admin/products', component: ProductListComponent },
   { path: 'products/:id', component: ProductDetailComponent },
+  { path: 'admin/edit-product/:id', component: ProductEditComponent },
 ];

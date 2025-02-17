@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -14,7 +14,8 @@ import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatError } from '@angular/material/form-field';
 import { MatCheckbox } from '@angular/material/checkbox';
-import { Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Product } from '../../../models/product.model';
 
 @Component({
   selector: 'app-product-edit',
@@ -33,18 +34,18 @@ import { Router } from '@angular/router';
   standalone: true,
   styleUrl: '../../auth/signup/signup.component.css',
 })
-export class ProductEditComponent {
+export class ProductEditComponent implements OnInit {
   public productForm = new FormGroup({
     title: new FormControl('', {
       validators: [Validators.required, Validators.maxLength(50)],
     }),
-    price: new FormControl(null, {
+    price: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
     }),
     description: new FormControl('', {
       validators: [Validators.required, Validators.minLength(50)],
     }),
-    stock: new FormControl(null, {
+    stock: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
     }),
     image: new FormControl(null),
@@ -52,6 +53,9 @@ export class ProductEditComponent {
 
   public imagePreview = '';
   private selectedFile: File | null = null;
+  private mode = 'create';
+  private productId: string | null = '';
+  private product: Product | null = null;
 
   readonly delivery = signal<Delivery>({
     name: 'Select all',
@@ -66,8 +70,40 @@ export class ProductEditComponent {
 
   constructor(
     private productsService: ProductService,
-    private router: Router
+    private router: Router,
+    public route: ActivatedRoute
   ) {}
+
+  ngOnInit() {
+    this.route.paramMap.subscribe((paramMap: ParamMap) => {
+      if (paramMap.has('id')) {
+        this.mode = 'edit';
+        this.productId = paramMap.get('id') as string;
+        this.productsService.findById(this.productId).subscribe({
+          next: (productData) => {
+            const product = productData.product;
+            if (!product) {
+              return;
+            }
+            this.product = product;
+
+            this.productForm.patchValue({
+              title: product.title,
+              price: product.price,
+              description: product.description,
+              stock: product.stock,
+            });
+          },
+          error: (err) => {
+            console.error('Error fetching product:', err);
+          },
+        });
+      } else {
+        this.mode = 'create';
+        this.productId = null;
+      }
+    });
+  }
 
   readonly partiallyComplete = computed(() => {
     const delivery = this.delivery();
@@ -105,25 +141,35 @@ export class ProductEditComponent {
 
     const formData = new FormData();
     formData.append('title', this.productForm.value.title || '');
-    formData.append('price', this.productForm.value.price || '');
+    formData.append('price', (this.productForm.value.price || '').toString());
     formData.append('description', this.productForm.value.description || '');
-    formData.append('stock', this.productForm.value.stock || '');
+    formData.append('stock', (this.productForm.value.stock || '').toString());
     formData.append('image', this.selectedFile);
     formData.append('delivery', JSON.stringify(selectedDeliveries));
     console.log(formData);
+    console.log(selectedDeliveries);
 
-    this.productsService.createProduct(formData).subscribe({
-      next: (response) => {
-        console.log('Product added:', response.product);
-        this.productForm.reset();
-        this.imagePreview = '';
-        this.selectedFile = null;
-        this.router.navigate(['/products']);
-      },
-      error: (err) => {
-        console.error('Error creating product:', err);
-      },
-    });
+    if (this.mode === 'create') {
+      this.productsService.createProduct(formData).subscribe({
+        next: async () => {
+          await this.router.navigate(['/products']);
+        },
+        error: (err) => {
+          console.error('Error creating product:', err);
+        },
+      });
+    } else {
+      this.productsService
+        .updateProduct(this.productId as string, formData)
+        .subscribe({
+          next: async () => {
+            await this.router.navigate(['/admin/products']);
+          },
+          error: (err) => {
+            console.error('Error updating product:', err);
+          },
+        });
+    }
   }
 
   public onImagePicked(event: Event) {

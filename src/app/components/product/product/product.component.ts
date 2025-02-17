@@ -1,14 +1,14 @@
 import { Component, input } from '@angular/core';
 import { Product } from '../../../models/product.model';
 import { NgClass, NgIf } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { MatButton } from '@angular/material/button';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { MatAnchor, MatButton } from '@angular/material/button';
 import { ApiService } from '../../../services/api.service';
 import { ProductService } from '../../../services/product.service';
 
 @Component({
   selector: 'app-product',
-  imports: [NgIf, NgClass, MatButton],
+  imports: [NgIf, NgClass, MatButton, MatAnchor, RouterLink],
   templateUrl: './product.component.html',
   standalone: true,
   styleUrl: './product.component.css',
@@ -28,7 +28,7 @@ export class ProductComponent {
     });
   }
 
-  public onDelete(productId: string | undefined, event: Event) {
+  public onDelete(productId: string | undefined, event: Event): void {
     event.stopPropagation();
     this.productsService.deleteProduct(productId).subscribe({
       next: (response) => {
@@ -38,5 +38,9 @@ export class ProductComponent {
         console.error('Error deleting product:', error);
       },
     });
+  }
+
+  public stopPropagation(event: Event) {
+    event.stopPropagation();
   }
 }

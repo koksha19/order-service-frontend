@@ -32,6 +32,16 @@ export class ApiService {
     );
   }
 
+  public updateProduct(
+    productId: string,
+    formData: FormData
+  ): Observable<{ message: string; product: Product }> {
+    return this.http.put<{ message: string; product: Product }>(
+      this.apiUrl + `/${productId}`,
+      formData
+    );
+  }
+
   public deleteProduct(
     productId: string | undefined
   ): Observable<{ message: string }> {
