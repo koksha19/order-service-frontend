@@ -5,26 +5,28 @@
     </a>
     <nav class="nav-links">
       <a routerLink="/products" routerLinkActive="active">Products</a>
-      <a routerLink="/orders" routerLinkActive="active">Orders</a>
-      <a routerLink="/admin/add-product" routerLinkActive="active">Add product</a>
-      <a routerLink="/admin/products" routerLinkActive="active">Admin products</a>
+      <a *ngIf="isAuthenticated" routerLink="/orders" routerLinkActive="active">Orders</a>
+      <a *ngIf="isAuthenticated" routerLink="/admin/add-product" routerLinkActive="active">Add product</a>
+      <a *ngIf="isAuthenticated" routerLink="/admin/products" routerLinkActive="active">Admin products</a>
     </nav>
   </div>
   <div>
     <nav class="nav-links">
-      <a routerLink="/login" routerLinkActive="active">Login</a>
-      <a routerLink="/signup" routerLinkActive="active">Sign up</a>
+      <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active">Login</a>
+      <a *ngIf="!isAuthenticated" routerLink="/signup" routerLinkActive="active">Sign up</a>
+      <a *ngIf="isAuthenticated" routerLink="/logout" routerLinkActive="active">Log out</a>
     </nav>
     <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <a mat-menu-item routerLink="/products">Products</a>
-      <a mat-menu-item routerLink="/orders">Orders</a>
-      <a mat-menu-item routerLink="/admin/add-product">Add product</a>
-      <a mat-menu-item routerLink="/admin/products">Admin products</a>
-      <a mat-menu-item routerLink="/login" routerLinkActive="active">Login</a>
-      <a mat-menu-item routerLink="/signup" routerLinkActive="active">Sign up</a>
+      <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/orders">Orders</a>
+      <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/admin/add-product">Add product</a>
+      <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/admin/products">Admin products</a>
+      <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/login" routerLinkActive="active">Login</a>
+      <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/signup" routerLinkActive="active">Sign up</a>
+      <a *ngIf="isAuthenticated" mat-menu-item routerLink="/logout" routerLinkActive="active">Log out</a>
     </mat-menu>
   </div>
 </mat-toolbar>

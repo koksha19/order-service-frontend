@@ -55,6 +55,7 @@ export class LoginComponent {
       next: async (response) => {
         console.log(response);
         this.authService.setToken(response.token);
+        this.authService.getAuthStatusListener().next(true);
         await this.router.navigate(['/products']);
       },
       error: (err) => {
