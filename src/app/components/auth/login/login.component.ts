@@ -11,6 +11,7 @@ import { NgIf } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { AuthApiService } from '../../../services/auth-api.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -36,8 +37,9 @@ export class LoginComponent {
   });
 
   constructor(
-    private authService: AuthApiService,
-    private router: Router
+    private authApiService: AuthApiService,
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   public onLogin() {
@@ -49,8 +51,10 @@ export class LoginComponent {
     formData.append('email', this.loginForm.value.email || '');
     formData.append('password', this.loginForm.value.password || '');
 
-    this.authService.logIn(formData).subscribe({
-      next: async () => {
+    this.authApiService.logIn(formData).subscribe({
+      next: async (response) => {
+        console.log(response);
+        this.authService.setToken(response.token);
         await this.router.navigate(['/products']);
       },
       error: (err) => {

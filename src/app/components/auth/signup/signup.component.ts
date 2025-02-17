@@ -43,7 +43,7 @@ export class SignupComponent {
   });
 
   constructor(
-    private authService: AuthApiService,
+    private authApiService: AuthApiService,
     private router: Router
   ) {}
 
@@ -61,7 +61,7 @@ export class SignupComponent {
     formData.append('password', this.customerForm.value.password || '');
     formData.append('confPassword', this.customerForm.value.confPassword || '');
 
-    this.authService.createCustomer(formData).subscribe({
+    this.authApiService.createCustomer(formData).subscribe({
       next: async () => {
         await this.router.navigate(['/products']);
       },
