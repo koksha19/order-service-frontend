@@ -1,6 +1,6 @@
 <div class="form">
   <h2>Add product</h2>
-  <form class="form-item" [formGroup]="productForm" (ngSubmit)="onCreateProduct()">
+  <form class="form-item" [formGroup]="productForm" (ngSubmit)="onSaveProduct()">
     <mat-form-field appearance="outline">
       <mat-label>Title</mat-label>
       <input matInput type="text" formControlName="title">

@@ -48,7 +48,7 @@ export class ProductEditComponent implements OnInit {
     stock: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
     }),
-    image: new FormControl(null),
+    image: new FormControl<File | null>(null, Validators.required),
   });
 
   public imagePreview = '';
@@ -66,6 +66,17 @@ export class ProductEditComponent implements OnInit {
       { name: 'Express', price: 70, checked: false },
       { name: 'Overnight', price: 100, checked: false },
     ],
+  });
+
+  readonly partiallyComplete = computed(() => {
+    const delivery = this.delivery();
+    if (!delivery.options) {
+      return false;
+    }
+    return (
+      delivery.options.some((d) => d.checked) &&
+      !delivery.options.every((d) => d.checked)
+    );
   });
 
   constructor(
@@ -93,6 +104,17 @@ export class ProductEditComponent implements OnInit {
               description: product.description,
               stock: product.stock,
             });
+
+            if (product.delivery) {
+              this.delivery().options?.forEach((deliveryOption) => {
+                const productOption = product.delivery.find(
+                  (d) => d.name === deliveryOption.name
+                );
+                if (productOption) {
+                  deliveryOption.checked = true;
+                }
+              });
+            }
           },
           error: (err) => {
             console.error('Error fetching product:', err);
@@ -104,17 +126,6 @@ export class ProductEditComponent implements OnInit {
       }
     });
   }
-
-  readonly partiallyComplete = computed(() => {
-    const delivery = this.delivery();
-    if (!delivery.options) {
-      return false;
-    }
-    return (
-      delivery.options.some((d) => d.checked) &&
-      !delivery.options.every((d) => d.checked)
-    );
-  });
 
   public update(checked: boolean, index?: number) {
     this.delivery.update((delivery) => {
@@ -129,12 +140,10 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  public onCreateProduct() {
+  public onSaveProduct() {
     if (!this.productForm.valid || !this.selectedFile) {
       return;
     }
-
-    console.log(this.selectedFile);
 
     const selectedDeliveries =
       this.delivery().options?.filter((d) => d.checked) || [];
@@ -146,8 +155,6 @@ export class ProductEditComponent implements OnInit {
     formData.append('stock', (this.productForm.value.stock || '').toString());
     formData.append('image', this.selectedFile);
     formData.append('delivery', JSON.stringify(selectedDeliveries));
-    console.log(formData);
-    console.log(selectedDeliveries);
 
     if (this.mode === 'create') {
       this.productsService.createProduct(formData).subscribe({
@@ -178,6 +185,10 @@ export class ProductEditComponent implements OnInit {
       return;
     }
     this.selectedFile = input.files[0];
+    this.productForm.patchValue({
+      image: this.selectedFile,
+    });
+    this.productForm.get('image')?.updateValueAndValidity();
 
     const reader = new FileReader();
     reader.onload = () => {
