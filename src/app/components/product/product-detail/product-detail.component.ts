@@ -23,7 +23,14 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit(): void {
     const id: string | null = this.activatedRoute.snapshot.paramMap.get('id');
-    this.product = this.productService.findById(id as string);
+    this.productService.findById(id as string).subscribe({
+      next: (response) => {
+        this.product = response.product;
+      },
+      error: (err) => {
+        console.error('Error fetching product:', err);
+      },
+    });
   }
 
   increaseQuantity() {

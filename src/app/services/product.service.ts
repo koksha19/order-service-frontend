@@ -26,8 +26,10 @@ export class ProductService {
     this.products = products;
   }
 
-  public findById(id: string): Product | null {
-    return this.products.find((product) => product._id === id) || null;
+  public findById(
+    productId: string
+  ): Observable<{ message: string; product: Product }> {
+    return this.apiService.getProduct(productId);
   }
 
   public createProduct(formData: FormData): Observable<{ product: Product }> {

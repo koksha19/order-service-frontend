@@ -15,6 +15,14 @@ export class ApiService {
     return this.http.get<{ message: string; products: Product[] }>(this.apiUrl);
   }
 
+  public getProduct(
+    productId: string
+  ): Observable<{ message: string; product: Product }> {
+    return this.http.get<{ message: string; product: Product }>(
+      this.apiUrl + `/${productId}`
+    );
+  }
+
   public createProduct(
     formData: FormData
   ): Observable<{ message: string; product: Product }> {
