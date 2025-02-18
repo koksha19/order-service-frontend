@@ -1,10 +1,9 @@
 import { Component, input } from '@angular/core';
 import { CartItem } from '../../../models/cart-item.model';
-import { AsyncPipe, NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-cart-item',
-  imports: [AsyncPipe, NgForOf],
+  imports: [],
   templateUrl: './cart-item.component.html',
   standalone: true,
   styleUrl: '../../order/order/order.component.css',
