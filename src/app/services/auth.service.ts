@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 })
 export class AuthService {
   public authStatusListener = new Subject<boolean>();
+  public isAuth = false;
 
   public getAuthStatusListener() {
     return this.authStatusListener;

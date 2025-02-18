@@ -6,15 +6,28 @@ import { ProductDetailComponent } from './components/product/product-detail/prod
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductListComponent },
-  { path: 'orders', component: OrderListComponent },
+  { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin/add-product', component: ProductEditComponent },
-  { path: 'admin/products', component: ProductListComponent },
+  {
+    path: 'admin/add-product',
+    component: ProductEditComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/products',
+    component: ProductListComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'products/:id', component: ProductDetailComponent },
-  { path: 'admin/edit-product/:id', component: ProductEditComponent },
+  {
+    path: 'admin/edit-product/:id',
+    component: ProductEditComponent,
+    canActivate: [AuthGuard],
+  },
 ];
