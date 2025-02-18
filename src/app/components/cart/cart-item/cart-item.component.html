@@ -1,0 +1,11 @@
+<div class="cart-item">
+  <div>
+    <img src="{{cartItem().product.image}}}" alt="Image">
+  </div>
+  <div>
+    <p>Product: {{cartItem().product.title}}</p>
+    <p>Delivery: {{cartItem().delivery.name}} - ${{cartItem().delivery.price}}</p>
+    <p>Quantity: {{cartItem().quantity}}</p>
+    <p>Price: ${{cartItem().product.price + cartItem().delivery.price}}</p>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-.order {
+.order, .cart-item {
   display: flex;
   width: 90%;
   margin: 15px auto;
@@ -10,40 +10,40 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.order:hover {
+.order:hover, .cart-item:hover {
   transform: scale(1.02);
 }
 
-.order img {
+.order img, .cart-item img {
   width: 150px;
   height: 150px;
   border-radius: 5px;
   border: 1px solid #dedede;
 }
 
-.order div {
+.order div, .cart-item div {
   display: flex;
   margin: 0 15px 0 15px;
   flex-direction: column;
 }
 
-.order h2 {
+.order h2, .cart-item h2 {
   margin: 0;
   color: #333;
 }
 
-.order p {
+.order p, .cart-item p {
   margin: 4px 0;
   color: #666;
 }
 
-.order p:last-child {
+.order p:last-child, .cart-item p:last-child {
   font-weight: bold;
   color: #4b82f1;
 }
 
 @media (max-width:500px) {
-  .order {
+  .order, .cart-item {
     width: 80%;
   }
 }
