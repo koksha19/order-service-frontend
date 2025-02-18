@@ -54,14 +54,15 @@ export class LoginComponent {
     this.authApiService.logIn(formData).subscribe({
       next: async (response) => {
         console.log(response);
-        this.authService.setToken(response.token);
+        const now = new Date();
+        const expirationDate = new Date(
+          now.getTime() + response.expiresIn * 1000
+        );
+        console.log(now, expirationDate);
+        this.authService.setAuthTimer(response.expiresIn);
+        this.authService.setToken(response.token, expirationDate);
         this.authService.getAuthStatusListener().next(true);
-        this.authService.tokenTimer = setTimeout(async () => {
-          this.authService.logOut();
-          this.authService.isAuth = false;
-          await this.router.navigate(['/products']);
-        }, response.expiresIn * 1000);
-        await this.router.navigate(['/products']);
+        this.authService.tokenTimer = await this.router.navigate(['/products']);
       },
       error: (err) => {
         console.error('Error creating product:', err);
