@@ -56,6 +56,11 @@ export class LoginComponent {
         console.log(response);
         this.authService.setToken(response.token);
         this.authService.getAuthStatusListener().next(true);
+        this.authService.tokenTimer = setTimeout(async () => {
+          this.authService.logOut();
+          this.authService.isAuth = false;
+          await this.router.navigate(['/products']);
+        }, response.expiresIn * 1000);
         await this.router.navigate(['/products']);
       },
       error: (err) => {

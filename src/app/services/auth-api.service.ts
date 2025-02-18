@@ -22,10 +22,16 @@ export class AuthApiService {
 
   public logIn(
     formData: FormData
-  ): Observable<{ message: string; token: string; customerId: string }> {
+  ): Observable<{
+    message: string;
+    token: string;
+    expiresIn: number;
+    customerId: string;
+  }> {
     return this.http.post<{
       message: string;
       token: string;
+      expiresIn: number;
       customerId: string;
     }>(this.apiUrl + 'login', formData);
   }

@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   onLogOut() {
     this.isAuthenticated = false;
     this.authService.logOut();
+    clearTimeout(this.authService.tokenTimer as number);
     this.router.navigate(['/products']);
   }
 
