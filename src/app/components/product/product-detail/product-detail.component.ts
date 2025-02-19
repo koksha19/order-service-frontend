@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Delivery } from '../../../models/delivery.model';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -15,10 +17,13 @@ import { FormsModule } from '@angular/forms';
 export class ProductDetailComponent implements OnInit {
   public product?: Product | null;
   public quantity = 1;
+  public selectedDelivery: Delivery | null = null;
 
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -45,8 +50,22 @@ export class ProductDetailComponent implements OnInit {
     }
   }
 
-  placeOrder() {
+  addToCart() {
     if (!this.product) return;
-    alert(`You have ordered ${this.quantity} x ${this.product.title}!`);
+    this.cartService
+      .addToCart(
+        this.product,
+        this.selectedDelivery as Delivery,
+        this.quantity,
+        this.product.price * this.quantity + this.selectedDelivery!.price
+      )
+      .subscribe({
+        next: async () => {
+          await this.router.navigate(['/cart']);
+        },
+        error: (err) => {
+          console.error('Failed adding to cart:', err);
+        },
+      });
   }
 }

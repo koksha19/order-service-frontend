@@ -16,13 +16,13 @@
     <div class="delivery-options">
       <p>Choose delivery method:</p>
       <div *ngFor="let delivery of product.delivery">
-        <input type="radio" [id]="delivery" name="delivery">
+        <input type="radio" [id]="delivery" name="delivery" [value]="delivery" [(ngModel)]="selectedDelivery">
         <label [for]="delivery">
           {{ delivery.name }} - ${{delivery.price}}
         </label>
       </div>
     </div>
-    <button class="order-button" (click)="placeOrder()">Add to cart</button>
+    <button class="order-button" (click)="addToCart()">Add to cart</button>
   </div>
 </div>
 
