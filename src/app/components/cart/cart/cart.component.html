@@ -1,7 +1,13 @@
-<h2>Cart</h2>
-<ul class="cart">
-  <li *ngFor="let cartItem of cart$ | async">
-    <app-cart-item [cartItem]="cartItem" ></app-cart-item>
-  </li>
-</ul>
-
+<div>
+  <h2>Cart</h2>
+  <div>
+    <ul class="cart">
+      <li *ngFor="let cartItem of cart$ | async">
+        <app-cart-item [cartItem]="cartItem" ></app-cart-item>
+      </li>
+    </ul>
+  </div>
+  <div class="btn">
+    <button mat-raised-button (click)="createOrder()">Create order</button>
+  </div>
+</div>

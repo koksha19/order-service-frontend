@@ -1,5 +1,6 @@
 h2 {
   justify-self: center;
+  color: #333
 }
 
 ul {
@@ -8,4 +9,9 @@ ul {
 
 li {
   list-style: none;
+}
+
+.btn {
+  justify-self: center;
+  margin: 15px 0 15px 0;
 }

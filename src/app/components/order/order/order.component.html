@@ -1,17 +1,21 @@
 <div class="order">
   <div>
-    <img src="{{order().product.image}}}" alt="Image">
-  </div>
-  <div>
     <h2>Customer: {{order().customer.customer}}'s order - {{order()._id}}</h2>
     <p>Customer address: {{order().customer.address}}</p>
     <p>Contact phone: {{order().customer.phone}}</p>
     <p>Contact name: {{order().customer.contactName}}</p>
-    <p>Product: {{order().product.title}}</p>
-    <p>Delivery type: {{order().delivery.name}}</p>
-    <p>Quantity: {{order().quantity}}</p>
-    <p>Order price: ${{order().product.price * order().quantity + order().delivery.price }}</p>
-    <p>{{order().date.toISOString().split('T')[0]}}</p>
+  </div>
+  <div *ngFor="let product of order().products">
+    <div>
+      <img src="{{product.product.image}}" alt="Product">
+    </div>
+    <p>Product: {{product.product.title}}</p>
+    <p>Delivery type: {{product.delivery.name}}</p>
+    <p>Quantity: {{product.quantity}}</p>
+  </div>
+  <div>
+    <p>Order price: ${{totalPrice}}</p>
+    <p>{{order().date}}</p>
   </div>
 </div>
 

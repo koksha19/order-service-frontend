@@ -5,8 +5,10 @@ import { Delivery } from './delivery.model';
 export interface Order {
   _id?: string;
   customer: Customer;
-  product: Product;
-  quantity: number;
-  delivery: Delivery;
+  products: {
+    product: Product;
+    quantity: number;
+    delivery: Delivery;
+  }[];
   date: Date;
 }
