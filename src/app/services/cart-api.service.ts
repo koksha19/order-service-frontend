@@ -50,4 +50,13 @@ export class CartApiService {
       };
     }>(this.apiUrl + 'cart', request);
   }
+
+  public removeFromCart(
+    productId: string
+  ): Observable<{ message: string; productId: string }> {
+    return this.http.put<{ message: string; productId: string }>(
+      this.apiUrl + `cart/${productId}`,
+      productId
+    );
+  }
 }

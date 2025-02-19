@@ -1,11 +1,16 @@
 <div class="cart-item">
-  <div>
-    <img src="{{cartItem().product.image}}" alt="Image">
+  <div class="info">
+    <div class="image">
+      <img src="{{cartItem().product.image}}" alt="Image">
+    </div>
+    <div class="product-info">
+      <p>Product: {{cartItem().product.title}}</p>
+      <p>Delivery: {{cartItem().delivery.name}} - ${{cartItem().delivery.price}}</p>
+      <p>Quantity: {{cartItem().quantity}}</p>
+      <p>Price: ${{cartItem().product.price * cartItem().quantity  + cartItem().delivery.price}}</p>
+    </div>
   </div>
-  <div>
-    <p>Product: {{cartItem().product.title}}</p>
-    <p>Delivery: {{cartItem().delivery.name}} - ${{cartItem().delivery.price}}</p>
-    <p>Quantity: {{cartItem().quantity}}</p>
-    <p>Price: ${{cartItem().product.price * cartItem().quantity  + cartItem().delivery.price}}</p>
+  <div class="btn">
+    <button mat-raised-button (click)="removeCartItem()">Remove</button>
   </div>
 </div>

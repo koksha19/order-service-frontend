@@ -28,6 +28,11 @@ export class CartService {
     this.cart = cart;
   }
 
+  public removeFromCart(productId: string): void {
+    const index = this.cart.findIndex((item) => item.product._id === productId);
+    this.cart.splice(index, 1);
+  }
+
   public addToCart(
     product: Product,
     delivery: Delivery,

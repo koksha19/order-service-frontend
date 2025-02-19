@@ -3,6 +3,7 @@
   width: 90%;
   margin: 15px auto;
   align-items: center;
+  justify-content: space-between;
   border: 1px solid #dedede;
   border-radius: 5px;
   padding: 1.5rem;
@@ -21,7 +22,13 @@
   border: 1px solid #dedede;
 }
 
-.order div, .cart-item div {
+.info {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.product-info {
   display: flex;
   margin: 0 15px 0 15px;
   flex-direction: column;
@@ -42,8 +49,17 @@
   color: #4b82f1;
 }
 
+.btn {
+  justify-self: right;
+}
+
 @media (max-width:500px) {
   .order, .cart-item {
     width: 80%;
+    flex-direction: column;
+  }
+
+  .btn {
+    margin-top: 15px;
   }
 }
