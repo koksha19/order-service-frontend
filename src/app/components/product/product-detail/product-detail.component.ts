@@ -6,10 +6,11 @@ import { NgForOf, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Delivery } from '../../../models/delivery.model';
 import { CartService } from '../../../services/cart.service';
+import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-product-detail',
-  imports: [NgIf, FormsModule, NgForOf],
+  imports: [NgIf, FormsModule, NgForOf, MatButton],
   templateUrl: './product-detail.component.html',
   standalone: true,
   styleUrl: './product-detail.component.css',
