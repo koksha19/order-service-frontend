@@ -1,10 +1,10 @@
 import { Component, input } from '@angular/core';
 import { Order } from '../../../models/order.model';
-import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
+import { NgForOf } from '@angular/common';
 
 @Component({
   selector: 'app-order',
-  imports: [AsyncPipe, NgForOf, NgIf],
+  imports: [NgForOf],
   templateUrl: './order.component.html',
   standalone: true,
   styleUrl: './order.component.css',

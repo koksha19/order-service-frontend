@@ -10,5 +10,5 @@ export interface Order {
     quantity: number;
     delivery: Delivery;
   }[];
-  date: Date;
+  date: string;
 }

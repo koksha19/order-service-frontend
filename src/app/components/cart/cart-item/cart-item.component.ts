@@ -9,7 +9,7 @@ import { CartService } from '../../../services/cart.service';
   imports: [MatButton],
   templateUrl: './cart-item.component.html',
   standalone: true,
-  styleUrl: '../../order/order/order.component.css',
+  styleUrl: './cart-item.component.css',
 })
 export class CartItemComponent {
   cartItem = input.required<CartItem>();
