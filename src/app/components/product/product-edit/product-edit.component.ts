@@ -159,7 +159,7 @@ export class ProductEditComponent implements OnInit {
     if (this.mode === 'create') {
       this.productsService.createProduct(formData).subscribe({
         next: async () => {
-          await this.router.navigate(['/products']);
+          await this.router.navigate(['/admin/products']);
         },
         error: (err) => {
           console.error('Error creating product:', err);
