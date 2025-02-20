@@ -4,7 +4,7 @@
       <img src="{{cartItem().product.image}}" alt="Image">
     </div>
     <div class="product-info">
-      <p>Product: {{cartItem().product.title}}</p>
+      <h2>Product: {{cartItem().product.title}}</h2>
       <p>Delivery: {{cartItem().delivery.name}} - ${{cartItem().delivery.price}}</p>
       <p>Quantity: {{cartItem().quantity}}</p>
       <p>Price: ${{cartItem().product.price * cartItem().quantity  + cartItem().delivery.price}}</p>
