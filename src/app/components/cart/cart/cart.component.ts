@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartItemComponent } from '../cart-item/cart-item.component';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import { AsyncPipe, NgForOf, NgIf } from '@angular/common';
 import { Observable } from 'rxjs';
 import { CartItem } from '../../../models/cart-item.model';
 import { CartService } from '../../../services/cart.service';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
-  imports: [CartItemComponent, AsyncPipe, NgForOf, MatButton],
+  imports: [CartItemComponent, AsyncPipe, NgForOf, MatButton, NgIf],
   templateUrl: './cart.component.html',
   styleUrl: '../../order/order-list/order-list.component.css',
   standalone: true,
