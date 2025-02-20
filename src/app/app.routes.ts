@@ -32,4 +32,9 @@ export const routes: Routes = [
     component: ProductEditComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'admin/orders',
+    component: OrderListComponent,
+    canActivate: [AuthGuard],
+  },
 ];

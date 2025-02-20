@@ -9,6 +9,7 @@
       <a *ngIf="isAuthenticated" routerLink="/cart" routerLinkActive="active">Cart</a>
       <a *ngIf="isAuthenticated" routerLink="/admin/add-product" routerLinkActive="active">Add product</a>
       <a *ngIf="isAuthenticated" routerLink="/admin/products" routerLinkActive="active">Admin products</a>
+      <a *ngIf="isAuthenticated" routerLink="/admin/orders" routerLinkActive="active">Admin orders</a>
     </nav>
   </div>
   <div>
@@ -25,6 +26,7 @@
       <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/orders">Orders</a>
       <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/admin/add-product">Add product</a>
       <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/admin/products">Admin products</a>
+      <a *ngIf="isAuthenticated" routerLink="/admin/orders" routerLinkActive="active">Admin orders</a>
       <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/login" routerLinkActive="active">Login</a>
       <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/signup" routerLinkActive="active">Sign up</a>
       <a *ngIf="isAuthenticated" mat-menu-item routerLink="/logout" routerLinkActive="active" (click)="onLogOut()">Log out</a>

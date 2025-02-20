@@ -7,17 +7,28 @@ import { Order } from '../models/order.model';
   providedIn: 'root',
 })
 export class OrderApiService {
-  private apiUrl = 'http://localhost:8080/orders';
+  private apiUrl = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {}
 
   public getOrders(): Observable<{ message: string; orders: Order[] }> {
-    return this.http.get<{ message: string; orders: Order[] }>(this.apiUrl);
+    return this.http.get<{ message: string; orders: Order[] }>(
+      this.apiUrl + 'orders'
+    );
+  }
+
+  public getAdminOrders(): Observable<{ message: string; orders: Order[] }> {
+    return this.http.get<{ message: string; orders: Order[] }>(
+      this.apiUrl + 'admin/orders'
+    );
   }
 
   public createOrder(): Observable<{ message: string; order: Order }> {
-    return this.http.post<{ message: string; order: Order }>(this.apiUrl, {
-      message: 'Create order',
-    });
+    return this.http.post<{ message: string; order: Order }>(
+      this.apiUrl + 'orders',
+      {
+        message: 'Create order',
+      }
+    );
   }
 }
