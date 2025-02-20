@@ -58,14 +58,18 @@ export class LoginComponent {
         const expirationDate = new Date(
           now.getTime() + response.expiresIn * 1000
         );
-        console.log(now, expirationDate);
         this.authService.setAuthTimer(response.expiresIn);
         this.authService.setToken(response.token, expirationDate);
         this.authService.getAuthStatusListener().next(true);
-        this.authService.tokenTimer = await this.router.navigate(['/products']);
+        if (Object.keys(response.roles).includes('Admin')) {
+          console.log('admin');
+          this.authService.getIsAdminListener().next(true);
+          localStorage.setItem('isAdmin', 'Admin');
+        }
+        await this.router.navigate(['/products']);
       },
       error: (err) => {
-        console.error('Error creating product:', err);
+        console.error('Error logging in:', err);
       },
     });
   }

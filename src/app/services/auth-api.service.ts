@@ -20,19 +20,19 @@ export class AuthApiService {
     );
   }
 
-  public logIn(
-    formData: FormData
-  ): Observable<{
+  public logIn(formData: FormData): Observable<{
     message: string;
     token: string;
     expiresIn: number;
     customerId: string;
+    roles: object;
   }> {
     return this.http.post<{
       message: string;
       token: string;
       expiresIn: number;
       customerId: string;
+      roles: object;
     }>(this.apiUrl + 'login', formData);
   }
 }

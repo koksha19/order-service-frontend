@@ -7,9 +7,9 @@
       <a routerLink="/products" routerLinkActive="active">Products</a>
       <a *ngIf="isAuthenticated" routerLink="/orders" routerLinkActive="active">Orders</a>
       <a *ngIf="isAuthenticated" routerLink="/cart" routerLinkActive="active">Cart</a>
-      <a *ngIf="isAuthenticated" routerLink="/admin/add-product" routerLinkActive="active">Add product</a>
-      <a *ngIf="isAuthenticated" routerLink="/admin/products" routerLinkActive="active">Admin products</a>
-      <a *ngIf="isAuthenticated" routerLink="/admin/orders" routerLinkActive="active">Admin orders</a>
+      <a *ngIf="isAuthenticated && isAdmin" routerLink="/admin/add-product" routerLinkActive="active">Add product</a>
+      <a *ngIf="isAuthenticated && isAdmin" routerLink="/admin/products" routerLinkActive="active">Admin products</a>
+      <a *ngIf="isAuthenticated && isAdmin" routerLink="/admin/orders" routerLinkActive="active">Admin orders</a>
     </nav>
   </div>
   <div>
@@ -24,9 +24,9 @@
     <mat-menu #menu="matMenu">
       <a mat-menu-item routerLink="/products">Products</a>
       <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/orders">Orders</a>
-      <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/admin/add-product">Add product</a>
-      <a *ngIf="isAuthenticated"  mat-menu-item routerLink="/admin/products">Admin products</a>
-      <a *ngIf="isAuthenticated" routerLink="/admin/orders" routerLinkActive="active">Admin orders</a>
+      <a *ngIf="isAuthenticated && isAdmin"  mat-menu-item routerLink="/admin/add-product">Add product</a>
+      <a *ngIf="isAuthenticated && isAdmin"  mat-menu-item routerLink="/admin/products">Admin products</a>
+      <a *ngIf="isAuthenticated && isAdmin" routerLink="/admin/orders" routerLinkActive="active">Admin orders</a>
       <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/login" routerLinkActive="active">Login</a>
       <a *ngIf="!isAuthenticated" mat-menu-item routerLink="/signup" routerLinkActive="active">Sign up</a>
       <a *ngIf="isAuthenticated" mat-menu-item routerLink="/logout" routerLinkActive="active" (click)="onLogOut()">Log out</a>

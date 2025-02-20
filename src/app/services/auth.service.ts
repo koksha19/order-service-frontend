@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   public authStatusListener = new Subject<boolean>();
+  public isAdminListener = new Subject<boolean>();
   public isAuth = false;
+  public isAdmin = false;
   public tokenTimer: unknown;
 
   constructor(private router: Router) {}
@@ -18,6 +20,14 @@ export class AuthService {
 
   public getAuthStatusObservable() {
     return this.authStatusListener.asObservable();
+  }
+
+  public getIsAdminListener() {
+    return this.isAdminListener;
+  }
+
+  public getIsAdminObservable() {
+    return this.isAdminListener.asObservable();
   }
 
   public getToken(): string {
@@ -32,7 +42,9 @@ export class AuthService {
   public logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
+    localStorage.removeItem('isAdmin');
     this.authStatusListener.next(false);
+    this.isAdminListener.next(false);
   }
 
   public autoAuth() {
@@ -46,6 +58,10 @@ export class AuthService {
       this.isAuth = true;
       this.setAuthTimer(expiresIn / 1000);
       this.authStatusListener.next(true);
+      if (authInfo.isAdmin) {
+        this.isAdmin = true;
+        this.isAdminListener.next(true);
+      }
     }
   }
 
@@ -60,12 +76,14 @@ export class AuthService {
   private getAuthData() {
     const token = localStorage.getItem('token');
     const expirationDate = localStorage.getItem('expirationDate');
+    const isAdmin = localStorage.getItem('isAdmin');
     if (!token || !expirationDate) {
       return;
     }
     return {
       token: token,
       expirationDate: new Date(expirationDate),
+      isAdmin: isAdmin,
     };
   }
 }
