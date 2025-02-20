@@ -22,6 +22,10 @@ export class OrderService {
     this._orders$.next(orderList);
   }
 
+  public setOrders(orders: Order[]): void {
+    this.orders = orders;
+  }
+
   public createOrder() {
     return this.orderApiService.createOrder().pipe(
       tap((response) => {
