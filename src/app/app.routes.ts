@@ -8,6 +8,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { ProductEditComponent } from './components/product/product-edit/product-edit.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { CartComponent } from './components/cart/cart/cart.component';
+import { AdminGuard } from './services/admin-guard.service';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,22 +20,22 @@ export const routes: Routes = [
   {
     path: 'admin/add-product',
     component: ProductEditComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'admin/products',
     component: ProductListComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   { path: 'products/:id', component: ProductDetailComponent },
   {
     path: 'admin/edit-product/:id',
     component: ProductEditComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'admin/orders',
     component: OrderListComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AuthGuard, AdminGuard],
   },
 ];

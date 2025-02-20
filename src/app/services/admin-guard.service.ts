@@ -6,17 +6,17 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(
     private authService: AuthService,
     private router: Router
   ) {}
 
   canActivate(): boolean | Observable<boolean> | Promise<boolean> {
-    const isAuth = this.authService.isAuth;
-    if (!isAuth) {
-      this.router.navigate(['/login']);
+    const isAdmin = this.authService.isAdmin;
+    if (!isAdmin) {
+      this.router.navigate(['/']);
     }
-    return isAuth;
+    return isAdmin;
   }
 }
