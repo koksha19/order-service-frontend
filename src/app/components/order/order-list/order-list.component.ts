@@ -24,7 +24,7 @@ export class OrderListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.orderApiService.getAdminOrders().subscribe((response) => {
+    this.orderApiService.getOrders().subscribe((response) => {
       this.ordersService.setOrders(response.orders);
       console.log(response);
     });

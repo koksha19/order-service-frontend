@@ -7,19 +7,21 @@ import { Product } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductApiService {
-  private apiUrl = 'http://localhost:8080/products';
+  private apiUrl = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) {}
 
   public getProducts(): Observable<{ message: string; products: Product[] }> {
-    return this.http.get<{ message: string; products: Product[] }>(this.apiUrl);
+    return this.http.get<{ message: string; products: Product[] }>(
+      this.apiUrl + 'products'
+    );
   }
 
   public getProduct(
     productId: string
   ): Observable<{ message: string; product: Product }> {
     return this.http.get<{ message: string; product: Product }>(
-      this.apiUrl + `/${productId}`
+      this.apiUrl + `products/${productId}`
     );
   }
 
@@ -27,7 +29,7 @@ export class ProductApiService {
     formData: FormData
   ): Observable<{ message: string; product: Product }> {
     return this.http.post<{ message: string; product: Product }>(
-      this.apiUrl,
+      this.apiUrl + 'admin/products',
       formData
     );
   }
@@ -37,7 +39,7 @@ export class ProductApiService {
     formData: FormData
   ): Observable<{ message: string; product: Product }> {
     return this.http.put<{ message: string; product: Product }>(
-      this.apiUrl + `/${productId}`,
+      this.apiUrl + `admin/products/${productId}`,
       formData
     );
   }
@@ -45,6 +47,8 @@ export class ProductApiService {
   public deleteProduct(
     productId: string | undefined
   ): Observable<{ message: string }> {
-    return this.http.delete<{ message: string }>(this.apiUrl + `/${productId}`);
+    return this.http.delete<{ message: string }>(
+      this.apiUrl + `admin/products/${productId}`
+    );
   }
 }
