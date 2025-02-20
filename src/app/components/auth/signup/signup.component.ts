@@ -63,7 +63,7 @@ export class SignupComponent {
 
     this.authApiService.createCustomer(formData).subscribe({
       next: async () => {
-        await this.router.navigate(['/products']);
+        await this.router.navigate(['/login']);
       },
       error: (err) => {
         console.error('Error creating product:', err);
