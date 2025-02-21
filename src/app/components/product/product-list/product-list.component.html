@@ -3,4 +3,4 @@
     <app-product [product]="product" ></app-product>
   </li>
 </ul>
-<mat-paginator [length]="totalProducts" [pageSize]="productsPerPage" [pageSizeOptions]="pageSizeOptions"></mat-paginator>
+<mat-paginator [length]="totalProducts" [pageSize]="productsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="(products$ | async)!.length > 0"></mat-paginator>

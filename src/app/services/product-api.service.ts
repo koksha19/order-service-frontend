@@ -11,10 +11,20 @@ export class ProductApiService {
 
   constructor(private http: HttpClient) {}
 
-  public getProducts(): Observable<{ message: string; products: Product[] }> {
-    return this.http.get<{ message: string; products: Product[] }>(
-      this.apiUrl + 'products'
-    );
+  public getProducts(
+    productsPerPage: number,
+    currentPage: number
+  ): Observable<{
+    message: string;
+    products: Product[];
+    productCount: number;
+  }> {
+    const paginationQuery = `?pagesize=${productsPerPage}&page=${currentPage}`;
+    return this.http.get<{
+      message: string;
+      products: Product[];
+      productCount: number;
+    }>(this.apiUrl + 'products' + paginationQuery);
   }
 
   public getProduct(
