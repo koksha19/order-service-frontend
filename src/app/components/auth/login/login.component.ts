@@ -69,7 +69,7 @@ export class LoginComponent {
         await this.router.navigate(['/products']);
       },
       error: (err) => {
-        console.error('Error logging in:', err);
+        console.log('Error logging in:', err);
       },
     });
   }
