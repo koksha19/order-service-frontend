@@ -4,7 +4,7 @@
       <img id="logo" ngSrc="logo.png" alt="Logo" height="52" width="53">
     </a>
     <nav class="nav-links">
-      <a *ngIf="!isAdmin" routerLink="/products" routerLinkActive="active">Products</a>
+      <a routerLink="/products" routerLinkActive="active">Products</a>
       <a *ngIf="isAuthenticated && !isAdmin" routerLink="/orders" routerLinkActive="active">Orders</a>
       <a *ngIf="isAuthenticated && !isAdmin" routerLink="/cart" routerLinkActive="active">Cart</a>
       <a *ngIf="isAuthenticated && isAdmin" routerLink="/admin/add-product" routerLinkActive="active">Add product</a>
