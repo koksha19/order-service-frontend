@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Customer } from '../models/customer.model';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthApiService {
-  private apiUrl = 'http://localhost:8080/';
+  private apiUrl = environment.domain;
+  private endpoints = {
+    signup: 'signup/',
+    login: 'login/',
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +20,7 @@ export class AuthApiService {
     formData: FormData
   ): Observable<{ message: string; customer: Customer }> {
     return this.http.post<{ message: string; customer: Customer }>(
-      this.apiUrl + 'signup',
+      this.apiUrl + this.endpoints.signup,
       formData
     );
   }
@@ -33,6 +38,6 @@ export class AuthApiService {
       expiresIn: number;
       customerId: string;
       roles: object;
-    }>(this.apiUrl + 'login', formData);
+    }>(this.apiUrl + this.endpoints.login, formData);
   }
 }

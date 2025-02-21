@@ -4,18 +4,22 @@ import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
 import { Delivery } from '../models/delivery.model';
 import { CartItem } from '../models/cart-item.model';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartApiService {
-  private apiUrl = 'http://localhost:8080/';
+  private apiUrl = environment.domain;
+  private endpoints = {
+    cart: 'cart/',
+  };
 
   constructor(private http: HttpClient) {}
 
   public getCart(): Observable<{ message: string; items: CartItem[] }> {
     return this.http.get<{ message: string; items: CartItem[] }>(
-      this.apiUrl + 'cart'
+      this.apiUrl + this.endpoints.cart
     );
   }
 
@@ -48,14 +52,14 @@ export class CartApiService {
         quantity: number;
         price: number;
       };
-    }>(this.apiUrl + 'cart', request);
+    }>(this.apiUrl + this.endpoints.cart, request);
   }
 
   public removeFromCart(
     productId: string
   ): Observable<{ message: string; productId: string }> {
     return this.http.put<{ message: string; productId: string }>(
-      this.apiUrl + `cart/${productId}`,
+      this.apiUrl + this.endpoints.cart + productId,
       productId
     );
   }
