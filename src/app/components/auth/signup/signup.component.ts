@@ -66,7 +66,7 @@ export class SignupComponent {
         await this.router.navigate(['/login']);
       },
       error: (err) => {
-        console.error('Error creating product:', err);
+        console.log('Error signing up:', err);
       },
     });
   }
