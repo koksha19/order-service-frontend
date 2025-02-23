@@ -9,6 +9,7 @@ import { ProductEditComponent } from './components/product/product-edit/product-
 import { AuthGuard } from './services/auth-guard.service';
 import { CartComponent } from './components/cart/cart/cart.component';
 import { AdminGuard } from './services/admin-guard.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -38,4 +39,5 @@ export const routes: Routes = [
     component: OrderListComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
+  { path: '**', component: NotFoundComponent },
 ];
