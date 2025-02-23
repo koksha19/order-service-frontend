@@ -36,4 +36,10 @@ export class OrderApiService {
       this.apiUrl + this.endpoints.adminOrders
     );
   }
+
+  public getInvoice(orderId: string): Observable<Blob> {
+    return this.http.get(this.apiUrl + this.endpoints.orders + orderId, {
+      responseType: 'blob',
+    });
+  }
 }

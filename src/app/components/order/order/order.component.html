@@ -17,7 +17,7 @@
       </div>
     </div>
     <div>
-      <p>Order price: <b>${{totalPrice}}</b></p>
+      <p>Order price: <b>${{totalPrice}}</b> - <button mat-raised-button (click)="downloadInvoice(order()._id)">Download invoice</button></p>
       <p>{{order().date.split('T')[0]}}</p>
     </div>
   </div>
