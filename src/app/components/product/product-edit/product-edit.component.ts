@@ -37,13 +37,17 @@ import { Product } from '../../../models/product.model';
 export class ProductEditComponent implements OnInit {
   public productForm = new FormGroup({
     title: new FormControl('', {
-      validators: [Validators.required, Validators.maxLength(50)],
+      validators: [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(50),
+      ],
     }),
     price: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
     }),
     description: new FormControl('', {
-      validators: [Validators.required, Validators.minLength(50)],
+      validators: [Validators.required, Validators.minLength(30)],
     }),
     stock: new FormControl<number | null>(null, {
       validators: [Validators.required, Validators.min(1)],
