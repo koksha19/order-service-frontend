@@ -1,3 +1,3 @@
-# TechMagicFrontend
+# Order Automation Service for TechMagic Academy
 
-This project contains frontend code for TechMagic academy.
+This repo contains frontend code for an order automation service, which I created as a project at TechMagic Academy.
