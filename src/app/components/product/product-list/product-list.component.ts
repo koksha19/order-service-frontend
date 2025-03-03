@@ -16,7 +16,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
   styleUrl: './product-list.component.css',
 })
 export class ProductListComponent implements OnInit {
-  public products$: Observable<Product[]>;
+  public products$: Observable<Product[]> = new Observable<Product[]>();
   public totalProducts = 1;
   public productsPerPage = 2;
   public currentPage = 1;
@@ -24,13 +24,12 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productsService: ProductService,
     private router: Router,
-    private apiService: ProductApiService
-  ) {
-    this.products$ = this.productsService.products$;
-  }
+    private productApiService: ProductApiService
+  ) {}
 
   public ngOnInit() {
-    this.apiService
+    this.products$ = this.productsService.products$;
+    this.productApiService
       .getProducts(this.productsPerPage, this.currentPage)
       .subscribe((products) => {
         this.totalProducts = products.productCount;
@@ -42,7 +41,7 @@ export class ProductListComponent implements OnInit {
   public onChangedPage(pageData: PageEvent) {
     this.productsPerPage = pageData.pageSize;
     this.currentPage = pageData.pageIndex + 1;
-    this.apiService
+    this.productApiService
       .getProducts(this.productsPerPage, this.currentPage)
       .subscribe((products) => {
         this.totalProducts = products.productCount;
