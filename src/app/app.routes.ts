@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { OrderListComponent } from './components/order/order-list/order-list.component';
-import { HomeComponent } from './components/home/home.component';
 import { ProductListComponent } from './components/product/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product/product-detail/product-detail.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
@@ -12,7 +11,7 @@ import { AdminGuard } from './services/admin-guard.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: ProductListComponent },
   { path: 'products', component: ProductListComponent },
   { path: 'orders', component: OrderListComponent, canActivate: [AuthGuard] },
   { path: 'cart', component: CartComponent, canActivate: [AuthGuard] },
@@ -28,15 +27,15 @@ export const routes: Routes = [
     component: ProductListComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
+  {
+    path: 'admin/orders',
+    component: OrderListComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
   { path: 'products/:id', component: ProductDetailComponent },
   {
     path: 'admin/edit-product/:id',
     component: ProductEditComponent,
-    canActivate: [AuthGuard, AdminGuard],
-  },
-  {
-    path: 'admin/orders',
-    component: OrderListComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
   { path: '**', component: NotFoundComponent },
