@@ -22,7 +22,7 @@
         </label>
       </div>
     </div>
-    <button mat-raised-button class="order-button" (click)="addToCart()" [disabled]="!selectedDelivery">Add to cart</button>
+    <button mat-raised-button class="order-button" (click)="addToCart()" [disabled]="!selectedDelivery || !isAuth || isAdmin">Add to cart</button>
   </div>
 </div>
 

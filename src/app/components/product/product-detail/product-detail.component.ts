@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { Delivery } from '../../../models/delivery.model';
 import { CartService } from '../../../services/cart.service';
 import { MatButton } from '@angular/material/button';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -19,16 +20,21 @@ export class ProductDetailComponent implements OnInit {
   public product?: Product | null;
   public quantity = 1;
   public selectedDelivery: Delivery | null = null;
+  public isAuth = false;
+  public isAdmin = false;
 
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
     private cartService: CartService,
+    private authService: AuthService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     const id: string | null = this.activatedRoute.snapshot.paramMap.get('id');
+    this.isAuth = this.authService.isAuth;
+    this.isAdmin = this.authService.isAdmin;
     this.productService.findById(id as string).subscribe({
       next: (response) => {
         this.product = response.product;
