@@ -15,17 +15,16 @@ import { AuthService } from '../../../services/auth.service';
   styleUrl: './order-list.component.css',
 })
 export class OrderListComponent implements OnInit {
-  public orders$: Observable<Order[]>;
+  public orders$!: Observable<Order[]>;
 
   constructor(
     private ordersService: OrderService,
     private orderApiService: OrderApiService,
     private authService: AuthService
-  ) {
-    this.orders$ = this.ordersService.orders$;
-  }
+  ) {}
 
   ngOnInit() {
+    this.orders$ = this.ordersService.orders$;
     if (this.authService.isAdmin) {
       this.orderApiService.getAdminOrders().subscribe((response) => {
         this.ordersService.setOrders(response.orders);
