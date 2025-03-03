@@ -1,3 +1,4 @@
+<h1 *ngIf="(products$ | async)?.length === 0">No products found</h1>
 <ul class="product-list">
   <li tabindex="0" *ngFor="let product of products$ | async" (click)="navigateToProduct(product._id)" (keydown)="navigateToProduct(product._id)">
     <app-product [product]="product" ></app-product>

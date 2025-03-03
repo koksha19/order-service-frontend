@@ -1,3 +1,7 @@
+h1 {
+  justify-self: center;
+}
+
 .product-list {
   padding: 0;
   display: flex;

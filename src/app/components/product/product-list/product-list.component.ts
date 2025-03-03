@@ -53,4 +53,6 @@ export class ProductListComponent implements OnInit {
   public navigateToProduct(id: string | undefined): void {
     this.router.navigate(['products', id]);
   }
+
+  protected readonly Array = Array;
 }
